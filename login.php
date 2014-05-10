@@ -3,9 +3,6 @@
 require_once("db.inc.php");
 require_once("func.inc.php");
 
-$db_account_tb = $db_prefix . "_account";
-$db_login_tb = $db_prefix . "_login";
-
 if( isset( $_POST ) ) {
 
 	$id = $_POST['id'];

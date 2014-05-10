@@ -20,7 +20,7 @@ if(1) {
 	<div class='controls'>
 		<select name='pid'>
 		<?
-			$sql = "SELECT * FROM bud13_problemset";
+			$sql = "SELECT * FROM $db_problemset_tb";
 			
 			$rows = $db->fetch_all_array($sql);
 

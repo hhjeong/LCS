@@ -20,9 +20,8 @@ if( $_SESSION['perm'] != "admin" && !$isStarted ) {
 
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
-
     <li class="active"><a href="#tabA" data-toggle="tab">문제 A</a></li>
-    <? for( $a = 'B' ; $a <= 'J' ; ++$a ) { ?>
+    <? for( $a = 'B' ; $a <= $lastLetter ; ++$a ) { ?>
 	    <li><a href="#tab<?=$a;?>" data-toggle="tab">문제 <?=$a;?></a></li>
     <? } ?>
   </ul>
@@ -30,7 +29,7 @@ if( $_SESSION['perm'] != "admin" && !$isStarted ) {
     <div class="tab-pane active" id="tabA">
 	<?=get_p('A');?>
     </div>
-    <? for( $a = 'B' ; $a <= 'J' ; ++$a ) { ?>
+    <? for( $a = 'B' ; $a <= $lastLetter ; ++$a ) { ?>
     <div class="tab-pane" id="tab<?=$a;?>">
 	<?=get_p($a);?>
     </div>

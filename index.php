@@ -1,7 +1,7 @@
 <?php
 	require_once("db.inc.php");
 	session_start();
-	if( isset( $_SESSION['key'] ) && $_SESSION['key'] == "rrnyvgHRqMvhgsHYuNAgb3S3" ) {
+	if( isset( $_SESSION['key'] ) && $_SESSION['key'] == "$authKey" ) {
 		header("Location:main.php");
 	}
 ?>

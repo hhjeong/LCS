@@ -74,7 +74,6 @@ body {
 <ul class='nav pull-right'>
 <li class='dropdown'><a class="dropdown-toggle" data-toggle="dropdown" href="#" style='color:#ffffff'><b class="caret"></b> 팀명 :  [ <?=$name;?>! ]</a>
 <ul class='dropdown-menu'>
-<li><a href="changeinfo.php">비번 변경</a></li>
 <li><a href="logout.php">로그 아웃</a></li>
 </li>
 </ul>

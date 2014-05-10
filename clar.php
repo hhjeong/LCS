@@ -22,17 +22,12 @@ require_once("header.php");
 	    <label class='contro-label'>구분</label>
 	    <div class='controls'>
 	    <select name="category" class="input-block-level">
+
 	    <option value='N'>일반</option>
-	    <option value='A'>문제 A</option>
-	    <option value='B'>문제 B</option>
-	    <option value='C'>문제 C</option>
-	    <option value='D'>문제 D</option>
-	    <option value='E'>문제 E</option>
-	    <option value='F'>문제 F</option>
-	    <option value='G'>문제 G</option>
-	    <option value='H'>문제 H</option>
-	    <option value='I'>문제 I</option>
-	    <option value='J'>문제 J</option>
+
+		<? for( $a = 'A' ; $a <= $lastLetter ; ++$a ) { ?>
+			<option value='<?=$a;?>'>문제 <?=$a;?></option>
+		<? } ?>
 	    </select>
 	    </div>
 	  </div>
@@ -66,7 +61,7 @@ require_once("header.php");
 <?
 $team_id = $_SESSION['id'];
 
-$visible_clars = $db->fetch_all_array("SELECT clar_id, category, content, response, public FROM bud13_clar WHERE public = 1 OR team_id = '$team_id' ORDER BY clar_id DESC;");
+$visible_clars = $db->fetch_all_array("SELECT clar_id, category, content, response, public FROM $db_clar_tb WHERE public = 1 OR team_id = '$team_id' ORDER BY clar_id DESC;");
 ?>
 
 <tbody>

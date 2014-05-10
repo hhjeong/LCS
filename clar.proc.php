@@ -28,7 +28,7 @@ if( ! $isRunning ) {
 	$request["public"] = false;
 	
 	if($ok) {
-		$db->query_insert( "bud13_clar", $request );
+		$db->query_insert( $db_clar_tb, $request );
 		header("Location: clar.proc.php", true, 303);
 		exit();
 	}
