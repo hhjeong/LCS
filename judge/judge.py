@@ -11,10 +11,14 @@ logging.basicConfig(level=logging.DEBUG, format=colored('%(asctime)s %(levelname
 class Judge:
 
 	def __init__(self):
-		self.db = MySQLdb.connect('localhost','libe','Hvb4Ap4tKuGCwQvt','libe')
-	
+		self.db = MySQLdb.connect('localhost','root','root','test')
+
+		self.db_prefix = "test"	
+
+		self.db_problemset_tb = self.db_prefix + "_problemset"
+		slef.db_status_tb = self.db_statua + "_status"
 		cur = self.db.cursor()
-		cur.execute("SELECT pid, differ, answer FROM bud13_problemset")
+		cur.execute("SELECT pid, differ, answer FROM %s" % self.db_problemset_tb)
 
 		self.differ = dict()
 		self.answer = dict()
@@ -25,7 +29,7 @@ class Judge:
 	
 	def fetch_lastest(self):
 		cur = self.db.cursor(MySQLdb.cursors.DictCursor)
-		cur.execute("SELECT * FROM bud13_status WHERE result = 'PENDING' ORDER BY run_id ASC")
+		cur.execute("SELECT * FROM %s WHERE result = 'PENDING' ORDER BY run_id ASC" % self.db_status_tb )
 
 		self.db.commit()
 		if int(cur.rowcount) == 0:
@@ -47,7 +51,7 @@ class Judge:
 		logging.info("Fetching run_id %s, %s, problem %s" % (submission_id, team_id, problem_id ) )
 		result = "YES" if self.differ[problem_id].judge( "", "", solution_path, self.answer[problem_id] ) else "NO"
 		
-		query = "UPDATE bud13_status SET result = '%s' WHERE run_id = %s" % (result,submission_id)
+		query = "UPDATE %s SET result = '%s' WHERE run_id = %s" % (self.db_status_tb, result,submission_id)
 
 		cur = self.db.cursor()
 		cur.execute( query )
@@ -61,12 +65,12 @@ class Judge:
 		logging.info( "Response of run_id %s : %s (%s)" % ( submission_id, result, str(updated) ) )
 
 		# self.update_board()
-
+	"""
 	def update_board(self):
 		os.system('php ../standing.php > ../standing.html')
 		os.system('php ../s_team.php > ../s_team.html')
 		os.system('php ../s_single.php > ../s_single.html')
-
+	"""
 
 	def run(self):
 		# self.update_board()

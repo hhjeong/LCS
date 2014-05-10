@@ -3,12 +3,12 @@ require_once("header.php");
 require_once("func.inc.php");
 $names = get_names();
 $team_id = $_SESSION['id'];
-$record = $db->fetch_all_array("SELECT * FROM bud13_status WHERE team_id = '$team_id' ORDER BY run_id DESC;");
+$record = $db->fetch_all_array("SELECT * FROM $db_status_tb WHERE team_id = '$team_id' ORDER BY run_id DESC;");
 $isa=false;
 
 if( $_SESSION['perm'] == "admin" ) {
 	$isa=true;
-	$record = $db->fetch_all_array("SELECT * FROM bud13_status");
+	$record = $db->fetch_all_array("SELECT * FROM $db_status_tb");
 }
 
 function t( $s ) {

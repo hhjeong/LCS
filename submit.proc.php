@@ -45,6 +45,7 @@ function appendSubmission(&$msg) {
 
 	
 	global $db, $isRunning, $isEnd, $authKey, $restriction_submit_interval, $maximum_submission_try;
+	global $db_problemset_tb, $db_status_tb;
 	$pid = $_POST['pid'];
 
 	
@@ -54,7 +55,7 @@ function appendSubmission(&$msg) {
 		return false;
 	}
 
-	$row = $db->query_first("SELECT count(*) AS num FROM bud13_problemset WHERE pid = '$pid';");
+	$row = $db->query_first("SELECT count(*) AS num FROM $db_problemset_tb WHERE pid = '$pid';");
 
 	if( $row['num'] == 0 ) {
 		$msg = "올바르지 않은 접근입니다.";
@@ -64,7 +65,7 @@ function appendSubmission(&$msg) {
 	$team_id = $_SESSION['id'];
 	$pid = $_POST['pid'];
 
-	$record = $db->query_first("SELECT MAX(time) FROM bud13_status WHERE team_id = '$team_id'");
+	$record = $db->query_first("SELECT MAX(time) FROM $db_status_tb WHERE team_id = '$team_id'");
 	$lastest_submission = $record["MAX(time)"];
 
 	$inteval = time() - strtotime($lastest_submission);
@@ -79,14 +80,14 @@ function appendSubmission(&$msg) {
 		return false;
 	}
 
-	$record = $db->query_first("SELECT COUNT(*) AS num FROM bud13_status WHERE team_id = '$team_id' AND pid = '$pid';");
+	$record = $db->query_first("SELECT COUNT(*) AS num FROM $db_status_tb WHERE team_id = '$team_id' AND pid = '$pid';");
 
 	if( $record['num'] >= $maximum_submission_try ) {
 		$msg = "해당 문제에 대해서 더이상의 제출이 불가능합니다.";
 		return false;
 	}
 	
-	$record = $db->query_first("SELECT MAX(run_id) AS num FROM bud13_status");
+	$record = $db->query_first("SELECT MAX(run_id) AS num FROM $db_status_tb");
 
 	$run_id = $record['num'];
 
@@ -107,7 +108,7 @@ function appendSubmission(&$msg) {
 	$record["output"] = $ans_path;
 	$record["solution"] = $sol_path;
 	$record["ip"] = get_real_ip_addr();
-	$now = $db->query_insert( "bud13_status", $record );
+	$now = $db->query_insert( $db_status_tb, $record );
 
 	$msg = "성공적으로 제출이 완료 되었습니다.<br/>제출 번호 : $now";	
 	return true;

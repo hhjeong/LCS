@@ -32,6 +32,7 @@ $db_prefix = "test"; // insert prefix of table
 $db_account_tb = $db_prefix . "_account";
 $db_login_tb = $db_prefix . "_login";
 $db_problemset_tb = $db_prefix . "_problemset";
+$db_status_tb = $db_prefix . "_status";
 $db_clar_tb = $db_prefix . "_clar";
 $inp_dir = "input/contest2013";
 $prob_dir = "problemset/contest";
