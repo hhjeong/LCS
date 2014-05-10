@@ -1,13 +1,16 @@
 <?php
 require_once("lib/db.class.php");
-$db = new Database("localhost", "your account", "your password", "you dbname" );
+
+// address, account, password and name of db
+$db = new Database("localhost", "root", "root", "test" );
+
 $db->connect();
 $db->query( "set character_set_client = utf8;" );
 $db->query( "set character_set_connection = utf8;" );
 $db->query( "set character_set_results = utf8;" );
 
-$startTime = strtotime("2013-05-01 16:30:00"); // start time
-$deadline = strtotime("2013-05-05 18:00:00"); // end time
+$startTime = strtotime("2013-05-10 16:30:00"); // start time
+$deadline = strtotime("2013-05-15 18:00:00"); // end time
 $contestDuration = $deadline - $startTime;
 $isStarted = time() >= $startTime;
 $isEnd = time() > $deadline;
@@ -23,5 +26,5 @@ $restriction_submit_interval = 10; // per second
 $maximum_submission_try = 20; // 횟수 
 $authKey = "your random auth key here";
 
-$db_prefix = "bud";
+$db_prefix = "test"; // insert prefix of table
 ?>
