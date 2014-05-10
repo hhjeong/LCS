@@ -1,0 +1,11 @@
+table .best {
+  background: #CDEB8B;
+}
+
+table .tie {
+  background: #F0C0C0;
+}	
+
+table .in_queue {
+  background: #F0C0C0;
+}

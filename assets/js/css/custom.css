@@ -1,0 +1,33 @@
+.badge-gold {
+	background-color: #ffdf00;
+}
+
+.badge-silver {
+	background-color: #545454;
+
+}
+
+.badge-bronze {
+	background-color: #c9ae5d;
+
+}
+
+.docs {
+  position: relative;
+  margin: 15px 0;
+  padding: 39px 19px 14px;
+  *padding-top: 19px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.td-width {
+	width:8% !important;
+}
+
+.td-clar-category {
+	width:10% !important;
+}
